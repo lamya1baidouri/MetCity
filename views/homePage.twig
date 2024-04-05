@@ -1,8 +1,8 @@
 {% extends 'layout.twig' %}
 
-{% block content %}
-    <h1>Bienvenue à MetCity</h1>
+{% block body %}
 
+    <h1>Bienvenue à MetCity</h1>
     <form action="/villes/add" method="get">
         <button class="button" type="submit">Ajouter une ville</button>
     </form>
@@ -11,7 +11,8 @@
         <button class="button" type="submit">Accéder à la liste des villes</button>
     </form>
 
-    <form action="/meteo/" method="get">
+    <form action="/meteo" method="get">
         <button class="button" type="submit">Page météorologique de la ville</button>
     </form>
 {% endblock %}
+
