@@ -1,0 +1,75 @@
+{# ajoutville.twig #}
+{% extends 'layout.twig' %}
+
+{% block title %}
+    Ajouter une ville
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="../public/stylesheets/ajoutville.css">
+{% endblock %}
+
+
+{% block body %}
+    <h1>Ajouter une ville</h1>
+
+    {# Handle potential errors passed from the backend #}
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {# The form action should point to the route that handles the POST request #}
+    <form id="villeForm" action="/villes/add" method="post" novalidate>
+        <div class="form-group">
+            <label for="nom">Nom de la ville:</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+
+        <div class="form-group">
+            <label for="latitude">Latitude:</label>
+            <input type="text" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])?\.[0-9]{1,6})$" id="latitude" name="latitude" required title="Please enter a valid latitude.">
+        </div>
+
+        <div class="form-group">
+            <label for="longitude">Longitude:</label>
+            <input type="text" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])?\.[0-9]{1,6})$" id="longitude" name="longitude" required title="Please enter a valid longitude.">
+        </div>
+
+        <button id="submitButton" type="submit">Ajouter la ville</button>
+    </form>
+    <script>
+        document.getElementById('villeForm').addEventListener('submit', function(event) {
+            var isValid = true;
+
+            // Validation logic here
+            var nom = document.getElementById('nom').value;
+            var latitude = document.getElementById('latitude').value;
+            var longitude = document.getElementById('longitude').value;
+
+            // Example: Simple length check
+            if (nom.length === 0 || latitude.length === 0 || longitude.length === 0) {
+                isValid = false;
+                alert('Tous les champs sont requis.');
+            }
+
+            // Additional checks for latitude and longitude formats
+            var latPattern = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])?\.[0-9]{1,6})$/;
+            var longPattern = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])?\.[0-9]{1,6})$/;
+
+            if (!latPattern.test(latitude)) {
+                isValid = false;
+                alert('Veuillez entrer une latitude valide.');
+            }
+
+            if (!longPattern.test(longitude)) {
+                isValid = false;
+                alert('Veuillez entrer une longitude valide.');
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+
+{% endblock %}

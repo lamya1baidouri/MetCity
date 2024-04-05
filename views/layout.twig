@@ -3,8 +3,10 @@
   <head>
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    {% block stylesheets %}{% endblock %}
   </head>
   <body>
-    {% block body %}jjhbkjs{% endblock %}
+    {% block body %}
+    {% endblock %}
   </body>
 </html>
