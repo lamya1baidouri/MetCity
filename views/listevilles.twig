@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <h1>Liste des villes</h1>
+    <ul>
+        {% for ville in villes %}
+            <li>{{ ville.nom }} ({{ ville.latitude }}, {{ ville.longitude }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
