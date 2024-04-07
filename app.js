@@ -3,13 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var sequelize = require('./config/database');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var villesRouter = require('./routes/ville');
 var HomePageRouter=require('./routes/homePage');
-var sequelize = require('./config/database');
-
+var weatherRouter = require('./routes/weather');
 var app = express();
 
 // Configuration du moteur de vue
@@ -28,7 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/villes', villesRouter);
 app.use('/HomePage',HomePageRouter);
-//app.use('/villes/add',villesRouter);
+app.use('/weather', weatherRouter);
 
 
 // Synchronisation avec la base de données

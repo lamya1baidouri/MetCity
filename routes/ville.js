@@ -1,7 +1,10 @@
 // routes/villes.js
+const { Op } = require("sequelize");
+
 const express = require('express');
 const router = express.Router();
 const Ville = require('../models/villes.js');
+
 
 router.get('/', async function(req, res) {
     try {
@@ -19,6 +22,23 @@ router.get('/add', async (req, res) => {
         res.status(400).render('error', { error: error.message });
     }
 });
+
+router.get('/search', async (req, res) => {
+    try {
+        const searchQuery = req.query.search || '';
+        const villes = await Ville.findAll({
+            where: {
+                nom: {
+                    [Op.like]: `${searchQuery}%`
+                }
+            }
+        });
+        res.json(villes);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 
 
 router.post('/add', async (req, res) => {

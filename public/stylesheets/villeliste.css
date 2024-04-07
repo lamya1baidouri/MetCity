@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#villesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#villesList li {
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.voir-meteo-btn {
+    margin-left: 10px;
+}
