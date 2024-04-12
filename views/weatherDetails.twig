@@ -1,0 +1,46 @@
+{% extends 'layout.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/stylesheets/meteoData.css">
+{% endblock %}
+{% block body %}
+    <h1>Weather Details for {{ city_name }}</h1>
+    <div class="controls">
+        <label for="timeRange">Select Time Range:</label>
+        <select id="timeRange">
+            <option value="all">All Day</option>
+            <option value="morning">Morning (6 AM to 12 PM)</option>
+            <option value="afternoon">Afternoon (12 PM to 6 PM)</option>
+            <option value="evening">Evening (6 PM to 12 AM)</option>
+            <option value="night">Night (12 AM to 6 AM)</option>
+        </select>
+    </div>
+
+
+    <div class="weather-scroller-container">
+        <button class="scroll-button left-button">&lt;</button>
+        <div class="weather-scroller" id="weatherScroller">
+            {% if weather %}
+                {% for entry in weather.properties.timeseries %}
+                    {% set hour = entry.time|date('G') %}
+                    <div class="weather-card" data-hour="{{ hour }}">
+                        <img src="/images/icons/{{ entry.data.next_1_hours.summary.symbol_code }}.png"
+                             alt="Weather Icon - {{ entry.data.next_1_hours.summary.symbol_code }}"
+                             class="weather-icon">
+                        <div class="weather-info">
+                            <p><strong>Time:</strong> {{ entry.time|date('g A') }}</p>
+                            <p><strong>Temperature:</strong> {{ entry.data.instant.details.air_temperature }}°C</p>
+                            <p><strong>Humidity:</strong> {{ entry.data.instant.details.relative_humidity }}%</p>
+                            <p><strong>Pressure:</strong> {{ entry.data.instant.details.air_pressure_at_sea_level }} hPa</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No weather data available.</p>
+            {% endif %}
+        </div>
+        <button class="scroll-button right-button">&gt;</button>
+    </div>
+
+    <script src="/javascripts/weatherFilter.js"></script>
+{% endblock %}
+

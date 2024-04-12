@@ -1,0 +1,66 @@
+
+.scroll-button {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    width: 30px; /* Button width */
+    height: 30px; /* Button height */
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Button background color */
+    color: white; /* Button text color */
+    border-radius: 15px; /* Rounded corners for the button */
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%); /* Center the button vertically */
+}
+
+.left-button {
+    left: 10px; /* Distance from the left edge of the container */
+}
+
+.right-button {
+    right: 10px; /* Distance from the right edge of the container */
+}
+
+.weather-scroller-container {
+    position: relative;
+    width: calc(250px * 6); /* Adjust the width here to show 3 cards, assuming each card is 250px wide */
+    margin: auto; /* Center the container */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+}
+.weather-card:hover {
+    transform: scale(1.1); /* Enlarge the card when hovered */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow for depth */
+}
+
+.weather-scroller {
+    display: flex; /* Use flexbox to align cards horizontally */
+    flex-wrap: nowrap; /* Prevents wrapping of items */
+    gap: 20px; /* Space between cards */
+}
+
+.weather-card {
+    flex: 0 0 250px; /* Adjust the flex-basis to control the card's width */
+    height: auto; /* Adjust height as needed */
+    margin-right: 10px; /* Add space between cards */
+    scroll-snap-align: start; /* Snap align each card */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #f9f9f9; /* Set background color here */
+    padding: 15px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.weather-card:last-child {
+    margin-right: 0; /* Removes margin from the last card */
+}
+
+/* Additional styling for the background */
+.weather-card {
+    background-color: #ffffff; /* Example background color */
+    background-size: cover; /* Cover the entire area of the card */
+    background-position: center; /* Center the background image */
+}
+
+

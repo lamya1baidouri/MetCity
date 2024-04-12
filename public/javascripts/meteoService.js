@@ -16,17 +16,7 @@ $(document).ready(function() {
     $(document).on('click', '.voir-meteo-btn', function() {
         var lat = $(this).data('lat');
         var lon = $(this).data('lon');
-        $.ajax({
-            url: `http://localhost:3000/weather?lat=${lat}&lon=${lon}`,
-            method: 'GET',
-            success: function(data) {
-                console.log(data);
-
-            },
-            error: function(error) {
-                console.error('Erreur AJAX :', error);
-            }
-        });
-
+        window.location.href = `/weather-details?lat=${lat}&lon=${lon}`; // Redirect to a new route
     });
+
 });
