@@ -6,8 +6,11 @@
     <input type="text" id="searchInput" placeholder="Rechercher une ville">
     <ul id="villesList">
         {% for ville in villes %}
-            <li>
-                {{ ville.nom }} ({{ ville.latitude }}, {{ ville.longitude }})
+            <li class="ville-item">
+                <div class="ville-info">
+                    <span class="ville-nom">{{ ville.nom }}</span>
+                    <span class="ville-coords">Lat: {{ ville.latitude | number_format(2) }}, Lon: {{ ville.longitude | number_format(2) }}</span>
+                </div>
                 <button class="voir-meteo-btn" data-lat="{{ ville.latitude }}" data-lon="{{ ville.longitude }}">Voir Météo</button>
             </li>
         {% endfor %}
@@ -16,4 +19,3 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/javascripts/meteoService.js"></script>
 {% endblock %}
-

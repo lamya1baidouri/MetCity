@@ -3,18 +3,17 @@
     <link rel="stylesheet" href="/stylesheets/meteoData.css">
 {% endblock %}
 {% block body %}
-    <h1>Weather Details for {{ city_name }}</h1>
+    <h1>Météo Du Jour </h1>
     <div class="controls">
-        <label for="timeRange">Select Time Range:</label>
+        <label for="timeRange">Sélectionnez la plage horaire :</label>
         <select id="timeRange">
-            <option value="all">All Day</option>
-            <option value="morning">Morning (6 AM to 12 PM)</option>
-            <option value="afternoon">Afternoon (12 PM to 6 PM)</option>
-            <option value="evening">Evening (6 PM to 12 AM)</option>
-            <option value="night">Night (12 AM to 6 AM)</option>
+            <option value="all">Toute la journée</option>
+            <option value="morning">Matin (6h à 12h)</option>
+            <option value="afternoon">Après-midi (12h à 18h)</option>
+            <option value="evening">Soirée (18h à 00h)</option>
+            <option value="night">Nuit (00h à 6h)</option>
         </select>
     </div>
-
 
     <div class="weather-scroller-container">
         <button class="scroll-button left-button">&lt;</button>
@@ -24,18 +23,18 @@
                     {% set hour = entry.time|date('G') %}
                     <div class="weather-card" data-hour="{{ hour }}">
                         <img src="/images/icons/{{ entry.data.next_1_hours.summary.symbol_code }}.png"
-                             alt="Weather Icon - {{ entry.data.next_1_hours.summary.symbol_code }}"
+                             alt="Icône météo - {{ entry.data.next_1_hours.summary.symbol_code }}"
                              class="weather-icon">
                         <div class="weather-info">
-                            <p><strong>Time:</strong> {{ entry.time|date('g A') }}</p>
-                            <p><strong>Temperature:</strong> {{ entry.data.instant.details.air_temperature }}°C</p>
-                            <p><strong>Humidity:</strong> {{ entry.data.instant.details.relative_humidity }}%</p>
-                            <p><strong>Pressure:</strong> {{ entry.data.instant.details.air_pressure_at_sea_level }} hPa</p>
+                            <p><strong>Heure :</strong> {{ entry.time|date('g A') }}</p>
+                            <p><strong>Température :</strong> {{ entry.data.instant.details.air_temperature }}°C</p>
+                            <p><strong>Humidité :</strong> {{ entry.data.instant.details.relative_humidity }}%</p>
+                            <p><strong>Pression :</strong> {{ entry.data.instant.details.air_pressure_at_sea_level }} hPa</p>
                         </div>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No weather data available.</p>
+                <p>Aucune donnée météorologique disponible.</p>
             {% endif %}
         </div>
         <button class="scroll-button right-button">&gt;</button>
@@ -43,4 +42,3 @@
 
     <script src="/javascripts/weatherFilter.js"></script>
 {% endblock %}
-

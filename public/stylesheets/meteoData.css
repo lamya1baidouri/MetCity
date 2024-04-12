@@ -1,17 +1,52 @@
-
 .scroll-button {
     position: absolute;
     top: 50%; /* Center vertically */
     width: 30px; /* Button width */
     height: 30px; /* Button height */
     border: none;
-    background-color: rgba(0, 0, 0, 0.5); /* Button background color */
+    background-color: rgba(0, 0, 0, 0.75); /* More visible background color */
     color: white; /* Button text color */
     border-radius: 15px; /* Rounded corners for the button */
     cursor: pointer;
     z-index: 10;
     transform: translateY(-50%); /* Center the button vertically */
+    transition: background-color 0.3s, opacity 0.3s; /* Smooth transitions for background and opacity */
 }
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.85); /* Even darker on hover */
+    opacity: 1; /* Full opacity on hover */
+}
+/* Styles for the "Select Time Range" label */
+label[for="timeRange"] {
+    display: block; /* Make the label a block element */
+    font-size: 18px; /* Larger font size */
+    color: #333; /* Dark grey color */
+    margin-bottom: 10px; /* Space below the label */
+    font-weight: bold; /* Bold font for emphasis */
+}
+
+/* Styles for the time range select dropdown */
+#timeRange {
+    padding: 8px 12px;
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Light background */
+    color: #333; /* Dark grey text */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#timeRange:hover {
+    border-color: #888; /* Darker border on hover */
+}
+
+#timeRange:focus {
+    outline: none;
+    border-color: #0056b3; /* Blue border for focus */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Subtle blue glow */
+}
+
 
 .left-button {
     left: 10px; /* Distance from the left edge of the container */
@@ -40,16 +75,16 @@
 }
 
 .weather-card {
-    flex: 0 0 250px; /* Adjust the flex-basis to control the card's width */
-    height: auto; /* Adjust height as needed */
-    margin-right: 10px; /* Add space between cards */
-    scroll-snap-align: start; /* Snap align each card */
+    flex: 0 0 250px;
+    height: auto;
+    margin-right: 10px;
+    scroll-snap-align: start;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background: #f9f9f9; /* Set background color here */
+    background: #f9f9f9;
     padding: 15px;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box;
 }
 
 .weather-card:last-child {
