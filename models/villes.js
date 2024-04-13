@@ -1,21 +1,28 @@
-// models/ville.js
-const Sequelize = require('sequelize');
-const sequelize = require('../config/database'); // Assurez-vous que le chemin est correct.
 
-const Villes = sequelize.define('ville', {
+const sequelize = require('../config/database');
+const { Sequelize, DataTypes } = require('sequelize');
+
+
+const Ville = sequelize.define('Ville', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     nom: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     latitude: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.FLOAT,
         allowNull: false
     },
     longitude: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.FLOAT,
         allowNull: false
     }
+}, {
+    timestamps: false
 });
 
-module.exports = Villes;
-
+module.exports = Ville;

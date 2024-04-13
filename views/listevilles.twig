@@ -12,6 +12,7 @@
                     <span class="ville-coords">Lat: {{ ville.latitude | number_format(2) }}, Lon: {{ ville.longitude | number_format(2) }}</span>
                 </div>
                 <button class="voir-meteo-btn" data-lat="{{ ville.latitude }}" data-lon="{{ ville.longitude }}">Voir Météo</button>
+                <button class="delete-ville-btn" data-id="{{ ville.id }}">Supprimer</button>
             </li>
         {% endfor %}
     </ul>

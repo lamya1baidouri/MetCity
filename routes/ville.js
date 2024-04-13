@@ -53,6 +53,21 @@ router.post('/add', async (req, res) => {
 });
 
 
+router.post('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await Ville.destroy({
+            where: { id: id }
+        });
+        if (result > 0) {
+            res.status(200).send({ message: 'Ville supprimée avec succès' });
+        } else {
+            res.status(404).send({ message: 'Ville non trouvée' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
 
 module.exports = router;
 // models/villes.js
