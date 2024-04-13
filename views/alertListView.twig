@@ -1,0 +1,58 @@
+{% block body %}
+    <h1>Weather Alerts</h1>
+    <div class="alert-scroller-container">
+        {% if alerts and alerts.features %}
+            {% for feature in alerts.features %}
+                {% set event = feature.properties.event|lower %}
+
+                {# Map event type to the correct icon ID #}
+                {% set iconMap = {
+                    'avalanches': 'avalanches',
+                    'blowingsnow': 'snow',
+                    'drivingconditions': 'drivingconditions',
+                    'flood': 'flood',
+                    'forestfire': 'forestfire',
+                    'gale': 'wind',
+                    'ice': 'ice',
+                    'icing': 'generic',
+                    'landslide': 'landslide',
+                    'polarlow': 'polarlow',
+                    'rain': 'rain',
+                    'rainflood': 'rainflood',
+                    'snow': 'snow',
+                    'stormsurge': 'stormsurge',
+                    'lightning': 'lightning',
+                    'wind': 'wind',
+                    'unknown': 'generic'
+                } %}
+                {% set iconName = 'icon-warning-' ~ (iconMap[event] ?: 'generic') %}
+
+                {# Determine the severity color #}
+                {% set severity = feature.properties.awareness_level.split(';')[1].trim().toLowerCase() %}
+                {% set color = 'orange' %} {# Default color for moderate severity #}
+                {% if severity == 'severe' %}
+                    {% set color = 'red' %}
+                {% elseif severity == 'extreme' %}
+                    {% set color = 'red' %}
+                {% endif %}
+
+                {% set iconPath = '/images/alertsIcons/' ~ iconName ~ '-' ~ color ~ '.png' %}
+                {% set defaultIconPath = '/images/alertsIcons/icon-warning-generic-' ~ color ~ '.png' %}
+
+                <div class="alert-card" data-severity="{{ severity }}">
+                    <img src="{{ iconPath }}" onerror="this.src='{{ defaultIconPath }}';" alt="Warning Icon - {{ feature.properties.event }}" class="weather-icon">
+                    <div class="alert-info">
+                        <h2>{{ feature.properties.title }}</h2>
+                        <p><strong>Description:</strong> {{ feature.properties.description }}</p>
+                        <p><strong>Severity:</strong> {{ feature.properties.severity | capitalize }}</p>
+                        <p><strong>Effective Period:</strong> {{ feature.when.interval[0] }} to {{ feature.when.interval[1] }}</p>
+                        <a href="{{ feature.properties.resources[0].uri }}">More Info</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No weather alerts available.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

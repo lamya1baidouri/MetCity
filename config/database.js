@@ -1,9 +1,10 @@
 // config/database.js
 const Sequelize = require('sequelize');
+const path = require('path');
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'C:\\Users\\aliba\\DBMeteo\\mydatabaseMeteo.db', // Remplacez ceci par le chemin vers votre fichier de base de données SQLite.
+    storage: path.join(__dirname, 'mydatabaseMeteo.db')
 });
 
 module.exports = sequelize;

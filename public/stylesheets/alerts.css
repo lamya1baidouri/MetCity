@@ -1,0 +1,40 @@
+.alert-scroller-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+
+.alert-card {
+    display: inline-block;
+    width: 300px;
+    margin: 0 10px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    vertical-align: top;
+}
+
+.alert-info {
+    margin-top: 10px;
+}
+
+.weather-icon {
+    width: 50px; /* adjust size as needed */
+    height: 50px; /* adjust size as needed */
+}
+
+.scroll-button {
+    background: #eee;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.controls label, .controls select {
+    margin-right: 10px;
+}

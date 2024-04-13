@@ -30,6 +30,7 @@ app.use('/HomePage',HomePageRouter);
 app.use('/weather-details', weatherRouter);
 
 
+
 // Synchronisation avec la base de données
 sequelize.sync().then(() => {
   console.log('Base de données synchronisée.');

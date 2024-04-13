@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cards = document.querySelectorAll('.weather-card');
         cards.forEach(card => {
             const cardHour = parseInt(card.dataset.hour, 10);
-            card.style.display = 'none'; // Hide initially
+            card.style.display = 'none';
 
             if (selectedRange === 'all' ||
                 (selectedRange === 'morning' && cardHour >= 6 && cardHour < 12) ||
