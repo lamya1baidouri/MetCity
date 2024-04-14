@@ -1,58 +1,52 @@
+{% extends 'layout.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/stylesheets/alerts.css">
+{% endblock %}
 {% block body %}
-    <h1>Weather Alerts</h1>
-    <div class="alert-scroller-container">
+    <h1>Alertes Météorologiques</h1>
+    <div class="controls">
+        <label for="severityFilter">Filtrer par Sévérité :</label>
+        <select id="severityFilter">
+            <option value="all">Tous</option>
+            <option value="moderate">Modérée</option>
+            <option value="severe">Sévère</option>
+            <option value="extreme">Extrême</option>
+        </select>
+    </div>
+    <div class="alert-container">
         {% if alerts and alerts.features %}
             {% for feature in alerts.features %}
                 {% set event = feature.properties.event|lower %}
-
-                {# Map event type to the correct icon ID #}
                 {% set iconMap = {
-                    'avalanches': 'avalanches',
-                    'blowingsnow': 'snow',
-                    'drivingconditions': 'drivingconditions',
-                    'flood': 'flood',
-                    'forestfire': 'forestfire',
-                    'gale': 'wind',
-                    'ice': 'ice',
-                    'icing': 'generic',
-                    'landslide': 'landslide',
-                    'polarlow': 'polarlow',
-                    'rain': 'rain',
-                    'rainflood': 'rainflood',
-                    'snow': 'snow',
-                    'stormsurge': 'stormsurge',
-                    'lightning': 'lightning',
-                    'wind': 'wind',
-                    'unknown': 'generic'
+                    'avalanches': 'avalanches', 'blowingsnow': 'neige',
+                    'drivingconditions': 'conditionsderoute', 'flood': 'inondation',
+                    'forestfire': 'feudeforet', 'gale': 'ventfort', 'ice': 'glace',
+                    'icing': 'givrage', 'landslide': 'glissementdeterre', 'polarlow': 'depolarlow',
+                    'rain': 'pluie', 'rainflood': 'inondationdepluie', 'snow': 'neige',
+                    'stormsurge': 'ondeetempete', 'lightning': 'foudre', 'wind': 'vent',
+                    'unknown': 'inconnu'
                 } %}
-                {% set iconName = 'icon-warning-' ~ (iconMap[event] ?: 'generic') %}
-
-                {# Determine the severity color #}
-                {% set severity = feature.properties.awareness_level.split(';')[1].trim().toLowerCase() %}
-                {% set color = 'orange' %} {# Default color for moderate severity #}
-                {% if severity == 'severe' %}
-                    {% set color = 'red' %}
-                {% elseif severity == 'extreme' %}
+                {% set iconName = 'icon-warning-' ~ (iconMap[event] ?: 'inconnu') %}
+                {% set severity = feature.properties.severity|lower %}
+                {% set color = 'orange' %}
+                {% if severity == 'severe' or severity == 'extreme' %}
                     {% set color = 'red' %}
                 {% endif %}
-
                 {% set iconPath = '/images/alertsIcons/' ~ iconName ~ '-' ~ color ~ '.png' %}
                 {% set defaultIconPath = '/images/alertsIcons/icon-warning-generic-' ~ color ~ '.png' %}
-
                 <div class="alert-card" data-severity="{{ severity }}">
-                    <img src="{{ iconPath }}" onerror="this.src='{{ defaultIconPath }}';" alt="Warning Icon - {{ feature.properties.event }}" class="weather-icon">
+                    <img src="{{ iconPath }}" onerror="this.src='{{ defaultIconPath }}';" alt="Icône d'avertissement - {{ feature.properties.event }}" class="weather-icon">
                     <div class="alert-info">
                         <h2>{{ feature.properties.title }}</h2>
-                        <p><strong>Description:</strong> {{ feature.properties.description }}</p>
-                        <p><strong>Severity:</strong> {{ feature.properties.severity | capitalize }}</p>
-                        <p><strong>Effective Period:</strong> {{ feature.when.interval[0] }} to {{ feature.when.interval[1] }}</p>
-                        <a href="{{ feature.properties.resources[0].uri }}">More Info</a>
+                        <p><strong>Description :</strong> {{ feature.properties.description }}</p>
+                        <p><strong>Sévérité :</strong> {{ feature.properties.severity | capitalize }}</p>
+                        <p><strong>Période Effective :</strong> {{ feature.when.interval[0] }} à {{ feature.when.interval[1] }}</p>
                     </div>
                 </div>
             {% endfor %}
         {% else %}
-            <p>No weather alerts available.</p>
+            <p>Aucune alerte météorologique disponible.</p>
         {% endif %}
     </div>
+    <script src="/javascripts/alerts.js"></script>
 {% endblock %}
-

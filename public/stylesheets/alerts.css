@@ -1,40 +1,49 @@
-.alert-scroller-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 0;
+/* Container holding the alerts, ensuring it centers and organizes the cards neatly */
+.alert-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%; /* Use full width to better align with various screen sizes */
 }
 
+/* Styling for each individual alert card */
 .alert-card {
-    display: inline-block;
-    width: 300px;
-    margin: 0 10px;
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    vertical-align: top;
+    width: 80%; /* Consistent width */
+    background-color: #ffffff; /* Brighter background for better readability */
+    border: 1px solid #ddd; /* Lighter border for a softer look */
+    padding: 20px; /* Increased padding for better spacing */
+    margin-bottom: 15px; /* Slightly more space between cards */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for interactions */
 }
 
-.alert-info {
-    margin-top: 10px;
+/* Hover effects to make interaction more noticeable */
+.alert-card:hover {
+    transform: translateY(-5px); /* Slight raise effect on hover */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Enhanced shadow on hover for a 'lifting' effect */
 }
 
-.weather-icon {
-    width: 50px; /* adjust size as needed */
-    height: 50px; /* adjust size as needed */
-}
-
-.scroll-button {
-    background: #eee;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
+/* Styling for the control section including the filter dropdown */
 .controls {
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 30px; /* Increased bottom margin for better visual separation from cards */
+    font-size: 1.1em; /* Larger font for better readability */
+    color: #333; /* Darker font color for better contrast */
 }
 
-.controls label, .controls select {
-    margin-right: 10px;
+/* Style the dropdown for filtering severity */
+#severityFilter {
+    padding: 10px 20px; /* More padding for easier interaction */
+    border: 2px solid #aaa; /* Solid border to make it more prominent */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    font-size: 1rem; /* Adequate font size for easy reading */
+    background-color: #fafafa; /* Soft background color for the dropdown */
+    cursor: pointer; /* Cursor pointer to indicate it's selectable */
+}
+
+/* Focus state for dropdown to enhance accessibility and UX */
+#severityFilter:focus {
+    border-color: #0056b3; /* Highlight color when focused */
+    outline: none; /* Removing default outline for custom styling */
 }
