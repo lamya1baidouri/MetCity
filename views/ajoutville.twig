@@ -12,6 +12,9 @@
 
 {% block body %}
     <h1>Ajouter une ville</h1>
+    <form action="/HomePage" method="get">
+        <button class="back-btn" type="submit">Page d'accueil</button>
+    </form>
 
     {# Handle potential errors passed from the backend #}
     {% if error %}
