@@ -1,6 +1,6 @@
 
     document.getElementById('villeForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
     var isValid = true;
 
     // Collect form data

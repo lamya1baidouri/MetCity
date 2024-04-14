@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const leftButton = document.querySelector('.left-button');
     const rightButton = document.querySelector('.right-button');
     const timeRangeSelector = document.getElementById('timeRange');
- //   const scroller = document.getElementById('weatherScroller');
-    const cardWidth = 250; // The width of a single card
-    const gapWidth = 20; // The gap between cards
+
+    const cardWidth = 250;
+    const gapWidth = 20;
     if (!scroller || !leftButton || !rightButton) {
         console.log('One or more essential elements are missing!');
         return;
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     timeRangeSelector.addEventListener('change', filterCardsByTimeRange); // Listen to changes in the time range selection
 
     leftButton.addEventListener('click', function() {
-        // Scrolls to the left by a fixed amount, you can adjust the '250' value
         scroller.scrollLeft -= 250;
     });
 

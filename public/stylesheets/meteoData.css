@@ -1,77 +1,80 @@
 .scroll-button {
     position: absolute;
-    top: 50%; /* Center vertically */
-    width: 30px; /* Button width */
-    height: 30px; /* Button height */
+    top: 50%;
+    width: 30px;
+    height: 30px;
     border: none;
-    background-color: rgba(0, 0, 0, 0.75); /* More visible background color */
-    color: white; /* Button text color */
-    border-radius: 15px; /* Rounded corners for the button */
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transform: translateY(-50%); /* Center the button vertically */
-    transition: background-color 0.3s, opacity 0.3s; /* Smooth transitions for background and opacity */
+    transform: translateY(-50%);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .scroll-button:hover {
-    background-color: rgba(0, 0, 0, 0.85); /* Even darker on hover */
-    opacity: 1; /* Full opacity on hover */
-}
-/* Styles for the "Select Time Range" label */
-label[for="timeRange"] {
-    display: block; /* Make the label a block element */
-    font-size: 18px; /* Larger font size */
-    color: #333; /* Dark grey color */
-    margin-bottom: 10px; /* Space below the label */
-    font-weight: bold; /* Bold font for emphasis */
+    background-color: rgba(0, 0, 0, 1);
+    transform: scale(1.1);
+    color: #FFD700;
 }
 
-/* Styles for the time range select dropdown */
+label[for="timeRange"] {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 #timeRange {
     padding: 8px 12px;
-    border: 2px solid #ccc; /* Light grey border */
+    border: 2px solid #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9; /* Light background */
-    color: #333; /* Dark grey text */
+    background-color: #f9f9f9;
+    color: #333;
     font-size: 16px;
     cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 #timeRange:hover {
-    border-color: #888; /* Darker border on hover */
+    border-color: #888;
 }
 
 #timeRange:focus {
     outline: none;
-    border-color: #0056b3; /* Blue border for focus */
-    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Subtle blue glow */
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
 }
 
-
 .left-button {
-    left: 10px; /* Distance from the left edge of the container */
+    left: 10px;
 }
 
 .right-button {
-    right: 10px; /* Distance from the right edge of the container */
+    right: 10px;
 }
 
 .weather-scroller-container {
     position: relative;
-    width: calc(250px * 6); /* Adjust the width here to show 3 cards, assuming each card is 250px wide */
-    margin: auto; /* Center the container */
-    overflow-x: auto; /* Allows horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 }
+
 .weather-card:hover {
-    transform: scale(1.1); /* Enlarge the card when hovered */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add shadow for depth */
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
 .weather-scroller {
-    display: flex; /* Use flexbox to align cards horizontally */
-    flex-wrap: nowrap; /* Prevents wrapping of items */
-    gap: 20px; /* Space between cards */
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 20px 0;
 }
 
 .weather-card {
@@ -79,23 +82,21 @@ label[for="timeRange"] {
     height: auto;
     margin-right: 10px;
     scroll-snap-align: start;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background: #fff;
     padding: 15px;
     box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .weather-card:last-child {
-    margin-right: 0; /* Removes margin from the last card */
+    margin-right: 0;
 }
 
-/* Additional styling for the background */
 .weather-card {
-    background-color: #ffffff; /* Example background color */
-    background-size: cover; /* Cover the entire area of the card */
-    background-position: center; /* Center the background image */
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
 }
-
-

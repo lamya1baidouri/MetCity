@@ -16,7 +16,7 @@ $(document).ready(function() {
     $(document).on('click', '.voir-meteo-btn', function() {
         var lat = $(this).data('lat');
         var lon = $(this).data('lon');
-        window.location.href = `/weather-details?lat=${lat}&lon=${lon}`; // Redirect to a new route
+        window.location.href = `/weather-details?lat=${lat}&lon=${lon}`;
     });
 
 });
