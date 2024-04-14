@@ -1,7 +1,9 @@
 {% extends 'layout.twig' %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="/stylesheets/meteoData.css">
 {% endblock %}
+
 {% block body %}
     <h1>Météo Du Jour </h1>
     <div class="controls">
@@ -22,9 +24,15 @@
                 {% for entry in weather.properties.timeseries %}
                     {% set hour = entry.time|date('G') %}
                     <div class="weather-card" data-hour="{{ hour }}">
-                        <img src="/images/icons/{{ entry.data.next_1_hours.summary.symbol_code }}.png"
-                             alt="Icône météo - {{ entry.data.next_1_hours.summary.symbol_code }}"
-                             class="weather-icon">
+                        {% if entry.data.next_1_hours.summary.symbol_code %}
+                            <img src="/images/icons/{{ entry.data.next_1_hours.summary.symbol_code }}.png"
+                                 alt="Icône météo - {{ entry.data.next_1_hours.summary.symbol_code }}"
+                                 class="weather-icon">
+                        {% else %}
+                            {% if entry.time|date('G') == '1' %}
+                                <img src="/images/icons/clearsky_day.png" alt="Icône météo par défaut" class="weather-icon">
+                            {% endif %}
+                        {% endif %}
                         <div class="weather-info">
                             <p><strong>Heure :</strong> {{ entry.time|date('g A') }}</p>
                             <p><strong>Température :</strong> {{ entry.data.instant.details.air_temperature }}°C</p>
